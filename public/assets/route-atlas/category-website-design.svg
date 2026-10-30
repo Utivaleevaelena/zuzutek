@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <title>Website Design and Development</title>
+  <g stroke="#0A1D49" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="8" y="11" width="48" height="34" rx="3"/>
+    <path d="M8 18h48M25 53h14M32 45v8"/>
+    <path d="m24 31 5 4 10-10"/>
+  </g>
+</svg>

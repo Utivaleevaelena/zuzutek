@@ -1,0 +1,755 @@
+/* S03/S05/S06 Control Manifest (WEB-005). Tokens map onto the global --h01-* set (DESIGN-TOKENS.css of the build-kit). */
+.cm {
+  --cm-amber: var(--h01-amber);
+  --cm-amber-hover: var(--h01-amber-hover);
+  --cm-blue: var(--h01-blue);
+  --cm-ink: var(--h01-ink);
+  --cm-muted: var(--h01-ink-muted);
+  --cm-paper: var(--h01-paper);
+  --cm-bright: var(--h01-paper-bright);
+  --cm-line: rgb(24 51 79 / 18%);
+  --cm-line-strong: rgb(24 51 79 / 32%);
+  --cm-grey: #8b919a;
+  --cm-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --cm-header: var(--h01-header-height);
+  --cm-gap: 1.25rem;
+  --cm-pt: clamp(2.5rem, 6vw, 4.5rem);
+  --cm-pb: clamp(2.5rem, 6vw, 4.5rem);
+
+  position: relative;
+  overflow: clip;
+  background: var(--cm-paper);
+}
+.cm-plate {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--cm-line);
+  scroll-margin-top: var(--cm-header);
+}
+.cm-plate--first {
+  border-top: 0;
+}
+.cm-inner {
+  position: relative;
+  max-width: var(--h01-container);
+  margin: 0 auto;
+  padding: var(--cm-pt) clamp(1rem, 4vw, 3.5rem) var(--cm-pb);
+}
+.cm-body {
+  position: relative;
+}
+
+/* decorative contour + registration layer (aria-hidden, code-drawn, very light) */
+.cm-contours {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.cm-contours path {
+  fill: none;
+  stroke: var(--cm-blue);
+  stroke-opacity: 0.075;
+  stroke-width: 1.2;
+}
+.cm-plate::before,
+.cm-plate::after,
+.cm-inner::before,
+.cm-inner::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  color: rgb(24 51 79 / 34%);
+  background:
+    linear-gradient(currentColor, currentColor) center / 1px 100% no-repeat,
+    linear-gradient(currentColor, currentColor) center / 100% 1px no-repeat;
+  pointer-events: none;
+}
+.cm-plate::before {
+  top: 12px;
+  right: 12px;
+}
+.cm-plate::after {
+  bottom: 12px;
+  right: 12px;
+}
+.cm-inner::before,
+.cm-inner::after {
+  display: none;
+}
+
+/* mobile/tablet spine pieces exist only below 1200 */
+.cm-spine,
+.cm-node {
+  display: none;
+}
+
+/* ---------- type ---------- */
+.cm-eyebrow {
+  margin: 0 0 var(--h01-space-3);
+  color: var(--cm-amber-hover);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+.cm-title {
+  max-width: 22ch;
+  margin: 0 0 var(--h01-space-8);
+  font-size: clamp(2.2rem, 5.4vw, 4.5rem);
+  font-weight: 900;
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+/* ---------- S03 / S06 stations ---------- */
+.cm-stations {
+  display: grid;
+  gap: var(--cm-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cm-cell {
+  position: relative;
+  display: grid;
+  align-content: start;
+}
+.cm-route {
+  position: relative;
+  height: 40px;
+}
+.cm-ring {
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 20px;
+  height: 20px;
+  border: 3px solid var(--cm-amber);
+  border-radius: 50%;
+  background: var(--cm-paper);
+}
+.cm-ring::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--cm-ink);
+}
+.cm-seg {
+  position: absolute;
+  left: 20px;
+  right: calc(-1 * var(--cm-gap));
+  top: 18.5px;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--cm-amber);
+  transform-origin: left center;
+}
+.cm-cell.is-last .cm-seg {
+  right: 12px;
+}
+.cm-cell.is-last .cm-seg::after {
+  content: '';
+  position: absolute;
+  right: -1px;
+  top: -4px;
+  width: 10px;
+  height: 10px;
+  border-top: 3px solid var(--cm-amber);
+  border-right: 3px solid var(--cm-amber);
+  transform: rotate(45deg);
+}
+.cm-card {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  gap: 0.9rem;
+  align-items: start;
+  padding: 1.1rem 1.1rem 1.25rem;
+  border: 1px solid var(--cm-line-strong);
+  border-radius: 6px;
+  background: var(--cm-bright);
+}
+.cm-card__icon {
+  width: 48px;
+  height: 48px;
+}
+.cm-card__title {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.cm-card__body {
+  margin: 0;
+  color: var(--cm-muted);
+  font-size: 0.9375rem;
+}
+
+/* motion state: not yet on = open ring, hidden segment, settling card */
+.cm-cell:not(.is-on) .cm-seg {
+  transform: scaleX(0);
+}
+.cm-cell:not(.is-on) .cm-ring::after {
+  transform: scale(0);
+}
+.cm-cell:not(.is-on) .cm-card {
+  opacity: 0.88;
+  transform: translateY(6px);
+}
+.cm-cell.is-on .cm-seg {
+  transform: none;
+  transition: transform var(--seg-dur) linear var(--seg-at);
+}
+.cm-cell.is-on .cm-ring::after {
+  transition: transform 200ms var(--cm-ease) var(--ring-at);
+}
+.cm-cell.is-on .cm-ring {
+  animation: cm-pulse 300ms var(--cm-ease) var(--ring-at) 1;
+}
+.cm-cell.is-on .cm-card {
+  animation: cm-settle 300ms var(--cm-ease) var(--ring-at) backwards;
+}
+/* S03: segment first (240 ms), then the ring and its card. S06: ring closes first (300 ms), then the segment. */
+.cm-stations--deliver .cm-cell {
+  --seg-at: var(--d);
+  --seg-dur: 240ms;
+  --ring-at: calc(var(--d) + 240ms);
+}
+.cm-stations--checkpoint .cm-cell {
+  --ring-at: var(--d);
+  --seg-at: calc(var(--d) + 300ms);
+  --seg-dur: 120ms;
+}
+@keyframes cm-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgb(255 138 0 / 55%);
+  }
+  100% {
+    box-shadow: 0 0 0 11px rgb(255 138 0 / 0%);
+  }
+}
+@keyframes cm-settle {
+  from {
+    opacity: 0.88;
+    transform: translateY(6px);
+  }
+}
+
+/* ownership marker (wide S06 only): travels over the completed route and stops at the final station */
+.cm-track {
+  display: none;
+}
+.cm-marker {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border-radius: 50%;
+  background: var(--cm-amber);
+  box-shadow: 0 0 0 4px rgb(255 138 0 / 28%);
+  opacity: 0;
+}
+
+.cm-stations--checkpoint .cm-cell.is-last .cm-ring {
+  width: 28px;
+  height: 28px;
+  top: 6px;
+  background: var(--cm-amber);
+}
+.cm-stations--checkpoint .cm-cell.is-last .cm-ring::after {
+  inset: 5px;
+  background: var(--cm-ink);
+}
+.cm-stations--checkpoint .cm-cell.is-last .cm-seg {
+  left: 28px;
+}
+
+/* ---------- links ---------- */
+.cm-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-height: 48px;
+  margin-top: var(--h01-space-6);
+  color: var(--cm-blue);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--cm-amber);
+  text-underline-offset: 6px;
+}
+.cm-link svg,
+.cm-cta svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.2s var(--cm-ease);
+}
+.cm-link:hover svg,
+.cm-link:focus-visible svg,
+.cm-cta:hover svg,
+.cm-cta:focus-visible svg {
+  transform: translateX(4px);
+}
+.cm-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 2rem;
+  margin-top: var(--h01-space-8);
+}
+.cm-actions .cm-link {
+  margin-top: 0;
+}
+.cm-cta {
+  gap: 0.75rem;
+  min-height: 56px;
+}
+
+/* ---------- S05 scope zones ---------- */
+.cm-zones {
+  position: relative;
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cm-zone {
+  position: relative;
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  gap: 0.9rem;
+  align-items: start;
+  padding: 1.25rem;
+  border: 1px solid var(--cm-line-strong);
+  background: var(--cm-bright);
+}
+.cm-zone__label {
+  margin: 0 0 0.35rem;
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+.cm-zone__body {
+  margin: 0;
+  color: var(--cm-muted);
+  max-width: 34rem;
+}
+.cm-zone__mark {
+  width: 28px;
+  height: 28px;
+  margin-top: 0.15rem;
+  border: 3px solid var(--cm-amber);
+  border-radius: 50%;
+}
+.cm-zone--in {
+  border: 2px solid var(--cm-blue);
+  background:
+    repeating-linear-gradient(135deg, transparent 0 9px, rgb(24 51 79 / 5%) 9px 10px),
+    var(--cm-bright);
+}
+.cm-zone--in .cm-zone__mark {
+  background: radial-gradient(circle, var(--cm-ink) 0 3px, var(--cm-paper) 4px);
+}
+.cm-zone--later {
+  border-style: dashed;
+}
+.cm-zone--later .cm-zone__mark {
+  border-style: dotted;
+}
+/* OUT is a calm graphite boundary: no route, glow, pulse or warning colour */
+.cm-zone--out {
+  background: rgb(252 250 244 / 70%);
+}
+.cm-zone--out .cm-zone__mark {
+  border-color: var(--cm-grey);
+}
+.cm-zone--out .cm-zone__label {
+  color: #4b525b;
+}
+.cm-zone__route {
+  position: absolute;
+  left: calc(1.25rem + 40px + 0.9rem);
+  right: 1.25rem;
+  bottom: 1.25rem;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--cm-amber);
+  transform-origin: left center;
+}
+.cm-zone__route::after {
+  content: '';
+  position: absolute;
+  right: -3px;
+  top: -8px;
+  width: 16px;
+  height: 16px;
+  border: 3px solid var(--cm-amber);
+  border-radius: 50%;
+  background: var(--cm-paper);
+}
+.cm-zone--in {
+  padding-bottom: 3.25rem;
+}
+.cm-branch {
+  display: block;
+  order: 1;
+  height: 28px;
+  margin-block: -0.5rem;
+}
+.cm-zone--in {
+  order: 0;
+}
+.cm-zone--later {
+  order: 2;
+}
+.cm-zone--out {
+  order: 3;
+}
+.cm-branch svg {
+  display: none;
+}
+.cm-branch::before {
+  content: '';
+  display: block;
+  height: 100%;
+  margin-left: 32px;
+  border-left: 3px dotted var(--cm-amber);
+}
+.cm-zones:not(.is-on) .cm-zone__route {
+  transform: scaleX(0);
+}
+.cm-zones:not(.is-on) .cm-branch {
+  clip-path: inset(0 0 100% 0);
+}
+.cm-zones.is-on .cm-zone__route {
+  transition: transform 450ms linear;
+}
+.cm-zones.is-on .cm-branch {
+  clip-path: inset(0);
+  transition: clip-path 300ms linear 550ms;
+}
+
+/* ---------- wide >= 1200 ---------- */
+@media (min-width: 1200px) {
+  .cm-stations--deliver {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+  .cm-stations--checkpoint {
+    --cm-gap: 1.5rem;
+    position: relative;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--cm-gap);
+  }
+  .cm-card {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+  .cm-stations--checkpoint .cm-card {
+    grid-template-columns: 48px minmax(0, 1fr);
+  }
+  .cm-track {
+    position: absolute;
+    display: block;
+    top: 20px;
+    left: 10px;
+    width: calc((2 * (100% - 2 * var(--cm-gap)) / 3 + 2 * var(--cm-gap)));
+    height: 0;
+    container-type: inline-size;
+  }
+  .cm-stations--checkpoint .cm-cell.is-last .cm-ring {
+    left: -4px;
+  }
+  .cm-cell.is-on ~ .cm-track .cm-marker {
+    opacity: 1;
+    transform: translateX(100cqw);
+    animation: cm-travel 540ms linear 420ms backwards;
+  }
+  .cm-zones {
+    grid-template-columns: minmax(0, 1.3fr) 120px minmax(0, 1fr);
+    grid-template-rows: 1fr 1fr;
+    gap: 1rem 0;
+    align-items: stretch;
+  }
+  .cm-zone--in {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    align-items: center;
+    padding-bottom: 1.25rem;
+  }
+  .cm-zone--later {
+    grid-column: 3;
+    grid-row: 1;
+  }
+  .cm-zone--out {
+    grid-column: 3;
+    grid-row: 2;
+  }
+  .cm-zone__route {
+    bottom: auto;
+    top: 50%;
+    left: calc(1.25rem + 40px + 0.9rem);
+    margin-top: 2.2rem;
+  }
+  .cm-branch {
+    margin-block: 0;
+    grid-column: 2;
+    grid-row: 1 / 3;
+    height: auto;
+  }
+  .cm-branch::before {
+    display: none;
+  }
+  .cm-branch svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+  .cm-branch path {
+    fill: none;
+    stroke: var(--cm-amber);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-dasharray: 0.1 9;
+    vector-effect: non-scaling-stroke;
+  }
+  .cm-zones:not(.is-on) .cm-branch {
+    clip-path: inset(0 100% 0 0);
+  }
+}
+/* skipped / jumped plate: complete at once, no stagger and no catch-up (the marker rests at the final station) */
+.cm-stations.is-instant .cm-cell,
+.cm-stations.is-instant .cm-cell *,
+.cm-stations.is-instant .cm-cell *::after,
+.cm-stations.is-instant .cm-track * {
+  transition: none !important;
+  animation: none !important;
+}
+@media (min-width: 1200px) {
+  .cm-stations.is-instant .cm-track .cm-marker {
+    opacity: 1;
+    transform: translateX(100cqw);
+  }
+  .cm-inner::before,
+  .cm-inner::after {
+    display: block;
+    left: 12px;
+    top: 12px;
+  }
+  .cm-inner::after {
+    top: auto;
+    bottom: 12px;
+  }
+}
+@keyframes cm-travel {
+  0% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  1% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  22%,
+  78% {
+    opacity: 1;
+    transform: translateX(50cqw);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(100cqw);
+  }
+}
+
+/* ---------- below 1200: one vertical amber spine ---------- */
+@media (max-width: 1199px) {
+  .cm-cell {
+    grid-template-columns: 44px minmax(0, 1fr);
+    column-gap: 0.75rem;
+  }
+  .cm-route {
+    height: auto;
+  }
+  .cm-ring {
+    left: 12px;
+    top: 1.35rem;
+  }
+  .cm-seg {
+    left: 20.5px;
+    right: auto;
+    top: calc(1.35rem + 20px);
+    bottom: calc(-1 * (var(--cm-gap) + 1.35rem));
+    width: 3px;
+    height: auto;
+    transform-origin: top center;
+  }
+  .cm-cell.is-last .cm-seg {
+    bottom: auto;
+    height: 36px;
+  }
+  .cm-cell.is-last .cm-seg::after {
+    right: auto;
+    left: -4px;
+    top: auto;
+    bottom: -1px;
+    transform: rotate(135deg);
+  }
+  .cm-cell:not(.is-on) .cm-seg {
+    transform: scaleY(0);
+  }
+  .cm-stations--checkpoint .cm-cell.is-last .cm-ring {
+    left: 8px;
+    top: 1.15rem;
+  }
+  .cm-stations--checkpoint .cm-cell.is-last .cm-seg {
+    left: 20.5px;
+    top: calc(1.15rem + 28px);
+  }
+  .cm-title {
+    max-width: none;
+  }
+
+  /* One continuous amber spine S03 → S05 → S06: the stations' own segments give way to it. */
+  .cm-seg {
+    display: none;
+  }
+  .cm-spine {
+    display: block;
+    position: absolute;
+    left: 20.5px;
+    top: calc(-1 * var(--cm-pt) - 1px);
+    bottom: calc(-1 * var(--cm-pb));
+    width: 3px;
+    border-radius: 3px;
+    background: var(--cm-amber);
+  }
+  .cm-plate--first .cm-spine {
+    top: 10px;
+  }
+  .cm-spine--end {
+    bottom: 0;
+  }
+  .cm-spine--end::after {
+    content: '';
+    position: absolute;
+    left: -3.5px;
+    bottom: -1px;
+    width: 10px;
+    height: 10px;
+    border-top: 3px solid var(--cm-amber);
+    border-right: 3px solid var(--cm-amber);
+    transform: rotate(135deg);
+  }
+  .cm-node {
+    display: block;
+    position: absolute;
+    z-index: 1;
+    left: 12px;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border: 3px solid var(--cm-amber);
+    border-radius: 50%;
+    background: var(--cm-paper);
+  }
+  .cm-node::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+    background: var(--cm-ink);
+    transform: scale(0);
+    transition: transform 240ms var(--cm-ease);
+  }
+  .cm-plate.is-reached .cm-node::after {
+    transform: scale(1);
+  }
+  .cm-plate.is-instant .cm-node::after {
+    transition: none;
+  }
+  .cm-head,
+  .cm-zones,
+  .cm-link {
+    margin-left: 56px;
+  }
+  .cm-head {
+    margin-left: 0;
+    padding-left: 56px;
+  }
+  .cm-zone {
+    grid-template-columns: 32px minmax(0, 1fr);
+    padding: 1rem;
+  }
+  .cm-zone--in {
+    padding-bottom: 3rem;
+  }
+  .cm-zone__route {
+    left: calc(1rem + 32px + 0.9rem);
+    right: 1rem;
+    bottom: 1rem;
+  }
+  /* the spine meets IN through a short elbow; LATER hangs off IN by the dotted branch, OUT stays apart */
+  .cm-zone--in::before {
+    content: '';
+    position: absolute;
+    left: -35px;
+    top: 1.75rem;
+    width: 35px;
+    height: 3px;
+    background: var(--cm-amber);
+  }
+  .cm-actions,
+  .cm-actions .cm-link {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .cm-inner {
+    padding-inline: 1rem;
+  }
+  .cm-card {
+    padding: 1rem;
+  }
+  .cm-cta {
+    width: 100%;
+  }
+}
+
+/* low landscape: tighter spacing, nothing hidden */
+@media (max-height: 500px) and (orientation: landscape) {
+  .cm {
+    --cm-pt: 1.5rem;
+    --cm-pb: 1.5rem;
+  }
+  .cm-contours path {
+    stroke-opacity: 0.05;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cm-node::after {
+    transform: scale(1) !important;
+  }
+  .cm *,
+  .cm *::before,
+  .cm *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+  .cm-marker {
+    opacity: 1;
+  }
+}

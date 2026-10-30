@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <title>Maintenance and Support</title>
+  <g stroke="#0A1D49" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="32" cy="32" r="22"/>
+    <circle cx="32" cy="32" r="10"/>
+    <path d="m16.4 16.4 8.5 8.5M39.1 39.1l8.5 8.5M47.6 16.4l-8.5 8.5M24.9 39.1l-8.5 8.5"/>
+    <path d="M22.1 9.8 27 21.6M42 9.8l-5 11.8M54.2 22.1 42.4 27M54.2 42l-11.8-5M42 54.2l-5-11.8M22.1 54.2 27 42.4M9.8 42l11.8-5M9.8 22.1 21.6 27"/>
+  </g>
+</svg>

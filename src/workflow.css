@@ -1,0 +1,499 @@
+/* H02 / H03 — Workflow transformation (WEB-002). Tokens: DESIGN-TOKENS.css of the build-kit. */
+.wf {
+  --workflow-graphite: #555b5e;
+  --workflow-alert: #b8473b;
+  --workflow-amber: var(--h01-amber);
+  --workflow-blue: var(--h01-blue);
+  --workflow-surface: rgb(252 250 244 / 94%);
+  --workflow-h02-loop: 10.4s;
+  --workflow-human-pause: 900ms;
+  --workflow-ease-settle: cubic-bezier(0.22, 1, 0.36, 1);
+
+  position: relative;
+  background: var(--h01-paper);
+}
+
+.wf-chapter {
+  display: grid;
+  gap: var(--h01-space-6);
+  max-width: var(--h01-container);
+  margin: 0 auto;
+  padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 3.5rem);
+}
+.wf-chapter + .wf-chapter {
+  border-top: 1px solid var(--h01-line);
+}
+
+/* ---------- copy ---------- */
+.wf-eyebrow {
+  display: inline-block;
+  margin: 0 0 var(--h01-space-4);
+  padding-bottom: 0.55rem;
+  border-bottom: 2px solid var(--h01-amber);
+  color: var(--h01-blue);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+.wf-title {
+  margin: 0 0 var(--h01-space-4);
+  font-size: clamp(2.25rem, 4.4vw, 3.9rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+.wf-body {
+  max-width: 34rem;
+  margin: 0 0 var(--h01-space-6);
+  color: var(--h01-ink-muted);
+  font-size: 1.0625rem;
+}
+
+/* ---------- scenario controls ---------- */
+.wf-controls {
+  display: grid;
+  gap: 0.6rem;
+  max-width: 24rem;
+}
+.wf-control {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  width: 100%;
+  min-height: 48px;
+  padding: 0 1rem;
+  border: 1px solid #b9b3a7;
+  border-radius: 8px;
+  background: var(--workflow-surface);
+  color: var(--h01-blue);
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s var(--workflow-ease-settle), background-color 0.2s var(--workflow-ease-settle),
+    box-shadow 0.2s var(--workflow-ease-settle);
+}
+.wf-control svg {
+  width: 22px;
+  height: 22px;
+}
+.wf-control__label {
+  flex: 1;
+}
+.wf-control__arrow {
+  color: var(--h01-blue);
+}
+.wf-control:hover {
+  border-color: var(--h01-blue-soft);
+  background: #fff;
+}
+.wf-control:active {
+  background: #eef2f6;
+}
+.wf-control[aria-pressed='true'] {
+  border-color: var(--h01-blue-soft);
+  background: #eef3f8;
+  box-shadow: inset 3px 0 0 var(--h01-amber);
+}
+
+.wf-cta {
+  margin-top: var(--h01-space-6);
+  gap: 0.75rem;
+  min-height: 52px;
+}
+.wf-cta__arrow svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ---------- scene ---------- */
+.wf-scene {
+  --u: 1cqw;
+  --wf-stroke: 8;
+  position: relative;
+  margin: 0;
+  aspect-ratio: 1586 / 992;
+  container-type: inline-size;
+}
+.wf-scene--tall {
+  --u: 2.15cqw;
+  --wf-stroke: 4;
+  aspect-ratio: 360 / 450;
+}
+.wf-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 6%, #000 94%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 6%, #000 94%, transparent 100%);
+}
+.wf-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* ---------- nodes ---------- */
+.wf-nodes {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.wf-node {
+  --icon: calc(var(--u) * 4.6);
+  position: absolute;
+  display: flex;
+  align-items: center;
+  transform: translate(calc(var(--icon) / -2), -50%);
+  color: var(--h01-blue);
+}
+.wf-scene--tall .wf-node {
+  --icon: calc(var(--u) * 4.9);
+}
+.wf-node__icon {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: var(--icon);
+  height: var(--icon);
+  border: 1.5px solid #3a4652;
+  border-radius: 50%;
+  background: #fffdf8;
+  box-shadow: 0 2px 8px rgb(16 24 32 / 14%);
+}
+.wf-node__icon > svg {
+  width: 52%;
+  height: 52%;
+}
+.wf-node__label {
+  margin-left: calc(var(--icon) * -0.35);
+  padding: 0 calc(var(--u) * 1.4) 0 calc(var(--u) * 2.1);
+  border: 1px solid rgb(16 24 32 / 22%);
+  border-radius: 999px;
+  background: var(--workflow-surface);
+  box-shadow: 0 2px 8px rgb(16 24 32 / 12%);
+  font-size: max(10.5px, calc(var(--u) * 1.35));
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  line-height: calc(var(--icon) * 0.66);
+  white-space: nowrap;
+  transform: rotate(-3deg);
+  transform-origin: left center;
+}
+
+/* H02 handwritten notes */
+.wf-note {
+  position: absolute;
+  z-index: 2;
+  transform: translate(-0%, -50%) rotate(var(--rot, -4deg));
+  color: #3a4044;
+  font-family: 'Bradley Hand', 'Segoe Print', 'Marker Felt', 'Comic Sans MS', cursive;
+  font-size: max(11px, calc(var(--u) * 1.75));
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* ---------- H02 graphite network ---------- */
+.wf-tangle {
+  fill: none;
+  stroke: var(--workflow-graphite);
+  stroke-width: calc(var(--wf-stroke) * 0.3);
+  stroke-linecap: round;
+  opacity: 0.8;
+}
+.wf-tangle-dots {
+  fill: none;
+  stroke: var(--workflow-graphite);
+  stroke-width: calc(var(--wf-stroke) * 0.85);
+  stroke-linecap: round;
+  stroke-dasharray: 0 calc(var(--wf-stroke) * 4.2);
+  opacity: 0.85;
+}
+.wf-pulse {
+  fill: none;
+  stroke: var(--h01-amber);
+  stroke-width: calc(var(--wf-stroke) * 0.75);
+  stroke-linecap: round;
+  stroke-dasharray: 0.07 1;
+  stroke-dashoffset: 0.07;
+  opacity: 0;
+}
+.wf-alert {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.wf-alert__halo {
+  fill: rgb(184 71 59 / 22%);
+}
+.wf-alert__core {
+  fill: var(--workflow-alert);
+  stroke: #fffdf8;
+  stroke-width: 2;
+}
+
+.wf-ring,
+.wf-badge,
+.wf-confirm {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+}
+.wf-ring {
+  inset: -4px;
+  border: 2px solid var(--h01-blue-soft);
+  border-radius: 50%;
+}
+.wf-badge {
+  top: -3%;
+  right: -3%;
+  width: 28%;
+  height: 28%;
+  border: 2px solid #fffdf8;
+  border-radius: 50%;
+  background: var(--h01-amber);
+}
+
+/* Fixed irregular loop: one 10.4s cycle, each event is a delayed copy of the same short keyframe. */
+.wf-loop {
+  animation-duration: var(--workflow-h02-loop);
+  animation-delay: var(--t, 0s);
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-play-state: paused;
+}
+.is-playing .wf-loop {
+  animation-play-state: running;
+}
+.wf-ring { animation-name: wf-ring; }
+.wf-badge { animation-name: wf-badge; }
+.wf-pulse { animation-name: wf-pulse; }
+.wf-alert { animation-name: wf-alert; }
+
+@keyframes wf-ring {
+  0% { opacity: 0; transform: scale(0.75); }
+  2.5% { opacity: 1; transform: scale(1); }
+  5% { opacity: 0; transform: scale(1.45); }
+  100% { opacity: 0; transform: scale(1.45); }
+}
+@keyframes wf-badge {
+  0% { opacity: 0; transform: scale(0.4); }
+  2% { opacity: 1; transform: scale(1.15); }
+  4% { opacity: 1; transform: scale(1); }
+  5% { opacity: 0; transform: scale(1); }
+  100% { opacity: 0; }
+}
+@keyframes wf-pulse {
+  0% { opacity: 0; stroke-dashoffset: 0.07; }
+  0.6% { opacity: 1; }
+  4.4% { opacity: 1; }
+  5% { opacity: 0; stroke-dashoffset: -1; }
+  100% { opacity: 0; stroke-dashoffset: -1; }
+}
+@keyframes wf-alert {
+  0% { opacity: 0; transform: scale(0.6); }
+  1.2% { opacity: 1; transform: scale(1); }
+  3.6% { opacity: 0.85; transform: scale(1.06); }
+  4.8% { opacity: 0; transform: scale(1.3); }
+  100% { opacity: 0; transform: scale(1.3); }
+}
+
+/* ---------- H03 route ---------- */
+.wf-guide {
+  fill: none;
+  stroke: rgb(16 24 32 / 24%);
+  stroke-width: calc(var(--wf-stroke) * 0.2);
+  stroke-dasharray: 3 7;
+  stroke-linecap: round;
+}
+.wf-seg__line,
+.wf-seg__glow {
+  fill: none;
+  stroke: var(--h01-amber);
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset var(--ms) linear;
+}
+.wf-seg__line {
+  stroke-width: var(--wf-stroke);
+}
+.wf-seg__glow {
+  stroke: rgb(255 138 0 / 28%);
+  stroke-width: calc(var(--wf-stroke) * 2.6);
+}
+.wf-seg.is-drawn .wf-seg__line,
+.wf-seg.is-drawn .wf-seg__glow {
+  stroke-dashoffset: 0;
+}
+/* Restart: snap back instead of retracting the old route slowly. */
+.wf-scene[data-step='0'] .wf-seg__line,
+.wf-scene[data-step='0'] .wf-seg__glow {
+  transition: none;
+}
+
+.wf-scene--h03 .wf-node {
+  transition: color 0.3s var(--workflow-ease-settle);
+}
+.wf-scene--h03 .wf-node__icon {
+  transition: border-color 0.3s var(--workflow-ease-settle), color 0.3s var(--workflow-ease-settle),
+    box-shadow 0.3s var(--workflow-ease-settle);
+}
+.wf-scene--h03 .wf-node.is-on .wf-node__icon {
+  border-color: var(--h01-amber);
+  color: #b25e00;
+  box-shadow: 0 0 0 3px rgb(255 138 0 / 24%), 0 4px 14px rgb(255 138 0 / 30%);
+}
+.wf-scene--h03 .wf-node.is-on .wf-confirm {
+  inset: -3px;
+  border: 2px solid var(--h01-amber);
+  border-radius: 50%;
+  animation: wf-confirm 0.7s var(--workflow-ease-settle) 1 both;
+}
+.wf-scene--h03 .wf-node.is-pause .wf-node__label {
+  border-color: var(--h01-amber);
+  background: #fff6e8;
+}
+@keyframes wf-confirm {
+  0% { opacity: 0.9; transform: scale(0.9); }
+  100% { opacity: 0; transform: scale(1.6); }
+}
+
+/* Outcome */
+.wf-outcome .wf-node__icon {
+  border-color: #aaa498;
+  color: transparent;
+  background: #f3efe5;
+  box-shadow: none;
+  transition: background-color 0.5s var(--workflow-ease-settle), color 0.5s var(--workflow-ease-settle),
+    border-color 0.5s var(--workflow-ease-settle), box-shadow 0.7s var(--workflow-ease-settle);
+}
+.wf-outcome .wf-node__label {
+  color: #6e665a;
+  transition: color 0.5s var(--workflow-ease-settle), border-color 0.5s var(--workflow-ease-settle),
+    background-color 0.5s var(--workflow-ease-settle);
+}
+.wf-outcome.is-done .wf-node__icon {
+  border-color: var(--h01-amber);
+  background: var(--h01-amber);
+  color: #fffdf8;
+  box-shadow: 0 0 0 6px rgb(255 138 0 / 22%), 0 6px 22px rgb(255 138 0 / 45%);
+}
+.wf-outcome.is-done .wf-node__label {
+  border-color: var(--h01-amber);
+  background: #fffaf2;
+  color: var(--h01-blue);
+}
+.wf-rays {
+  position: absolute;
+  right: calc(var(--u) * -2.6);
+  top: 50%;
+  width: calc(var(--u) * 2);
+  height: calc(var(--u) * 5);
+  opacity: 0;
+  transform: translateY(-50%);
+  transition: opacity 0.6s var(--workflow-ease-settle) 0.1s;
+}
+.wf-rays i {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--h01-amber);
+}
+.wf-rays i:nth-child(1) { top: 10%; transform: rotate(-32deg); }
+.wf-rays i:nth-child(2) { top: 50%; }
+.wf-rays i:nth-child(3) { top: 90%; transform: rotate(32deg); }
+.wf-outcome.is-done .wf-rays { opacity: 1; }
+
+/* ---------- reduced motion: static, finished states ---------- */
+.is-reduced .wf-loop,
+.is-reduced .wf-ring,
+.is-reduced .wf-badge {
+  animation: none;
+}
+.is-reduced .wf-alert--static {
+  animation: none;
+  opacity: 1;
+}
+.is-reduced .wf-seg__line,
+.is-reduced .wf-seg__glow,
+.is-reduced .wf-outcome .wf-node__icon,
+.is-reduced .wf-outcome .wf-node__label,
+.is-reduced .wf-rays {
+  transition: none;
+}
+.is-reduced .wf-confirm {
+  animation: none;
+  opacity: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .wf-loop,
+  .wf-confirm {
+    animation: none !important;
+  }
+}
+
+/* ---------- desktop >= 1200: copy left, process table right ---------- */
+@media (min-width: 1200px) {
+  .wf-chapter {
+    grid-template-columns: minmax(0, 0.36fr) minmax(0, 0.64fr);
+    align-items: center;
+    gap: var(--h01-space-8);
+  }
+  .wf-photo {
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 12%),
+      linear-gradient(to bottom, transparent 0, #000 6%, #000 94%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0, #000 12%),
+      linear-gradient(to bottom, transparent 0, #000 6%, #000 94%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+  }
+}
+
+/* ---------- tablet 768–1199: copy first, wide map below ---------- */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .wf-controls {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: none;
+  }
+  .wf-control__arrow {
+    display: none;
+  }
+  .wf-photo {
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 6%, #000 94%, transparent 100%);
+  }
+}
+
+/* ---------- mobile < 768: vertical map ---------- */
+@media (max-width: 767px) {
+  .wf-chapter {
+    padding-inline: 0;
+    gap: var(--h01-space-4);
+  }
+  .wf-chapter__copy {
+    padding-inline: 1rem;
+  }
+  .wf-title {
+    font-size: clamp(2rem, 9.4vw, 2.6rem);
+  }
+  .wf-scene {
+    width: 100%;
+  }
+  .wf-note {
+    font-size: max(11px, calc(var(--u) * 1.5));
+  }
+}

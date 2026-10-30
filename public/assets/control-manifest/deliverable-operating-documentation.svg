@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <title>Operating documentation</title>
+  <g stroke="#0A1D49" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M7 14c7-4 16-3 25 3v38c-9-6-18-7-25-3V14Z"/>
+    <path d="M57 14c-7-4-16-3-25 3v38c9-6 18-7 25-3V14Z"/>
+    <path d="M14 24c4-1 8 0 12 2M14 33c4-1 8 0 12 2M50 24c-4-1-8 0-12 2M50 33c-4-1-8 0-12 2"/>
+  </g>
+</svg>

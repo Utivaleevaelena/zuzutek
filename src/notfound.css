@@ -1,0 +1,166 @@
+/* E01 404 (WEB-016). Tokens map onto the global --h01-* set (DESIGN-TOKENS.css of the build-kit). Static page: no motion. */
+.nf {
+  --nf-ink: var(--h01-ink);
+  --nf-muted: var(--h01-ink-muted);
+  --nf-blue: var(--h01-blue);
+  --nf-amber: var(--h01-amber);
+  --nf-amber-text: var(--h01-amber-hover);
+  --nf-line: var(--h01-line);
+
+  position: relative;
+  overflow: clip;
+  background: var(--h01-paper);
+  color: var(--nf-ink);
+}
+.nf::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, rgb(24 51 79 / 4%) 0 1px, transparent 1px 56px);
+  pointer-events: none;
+}
+.nf-inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+  max-width: var(--h01-container);
+  min-height: 30rem;
+  margin: 0 auto;
+  padding: clamp(3.5rem, 8vw, 7rem) clamp(1rem, 4vw, 3.5rem);
+}
+.nf-eyebrow {
+  margin: 0 0 var(--h01-space-3);
+  color: var(--nf-amber-text);
+  font-size: 0.8125rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+}
+.nf-title {
+  max-width: 12ch;
+  margin: 0;
+  font-size: clamp(2.3rem, 4.8vw, 4rem);
+  font-weight: 900;
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.nf-lead {
+  max-width: 30rem;
+  margin: 1.25rem 0 0;
+  color: var(--nf-muted);
+  font-size: 1.0625rem;
+}
+.nf-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  margin-top: 1.75rem;
+}
+.nf-btn {
+  min-height: 52px;
+}
+.nf .link-arrow {
+  min-height: 44px;
+}
+.nf .link-arrow svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.nf-more {
+  max-width: 30rem;
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--nf-line);
+}
+.nf-more p {
+  margin: 0 0 0.4rem;
+  color: var(--nf-muted);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+.nf-more ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 1.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.nf-more a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--nf-blue);
+  font-weight: 700;
+  text-underline-offset: 5px;
+}
+.nf-more a:hover {
+  color: var(--h01-blue-soft);
+}
+.nf-route {
+  width: 100%;
+  max-width: 30rem;
+  justify-self: center;
+}
+.nf-route svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.nf-route__solid {
+  stroke: var(--nf-amber);
+  stroke-width: 4;
+}
+.nf-route__dots {
+  stroke: var(--nf-amber);
+  stroke-width: 4;
+  stroke-dasharray: 3 14;
+  stroke-linecap: round;
+}
+.nf-route__home {
+  fill: var(--h01-paper-bright);
+  stroke: var(--nf-amber);
+  stroke-width: 4;
+}
+.nf-route__unknown {
+  fill: none;
+  stroke: #9aa0a6;
+  stroke-width: 3;
+  stroke-dasharray: 4 6;
+}
+.nf-route__label {
+  fill: var(--nf-blue);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+.nf-route__q {
+  fill: var(--nf-muted);
+  font-size: 22px;
+  font-weight: 900;
+}
+
+@media (max-width: 1023px) {
+  .nf-inner {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+  }
+  .nf-route {
+    max-width: 22rem;
+    justify-self: start;
+  }
+}
+@media (max-width: 767px) {
+  .nf-btn {
+    width: 100%;
+  }
+}

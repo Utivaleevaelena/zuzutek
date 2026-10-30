@@ -1,0 +1,197 @@
+/* P01 privacy (WEB-015). Tokens map onto the global --h01-* set (DESIGN-TOKENS.css of the build-kit). Static page: no motion. */
+.pv {
+  --pv-ink: var(--h01-ink);
+  --pv-muted: var(--h01-ink-muted);
+  --pv-blue: var(--h01-blue);
+  --pv-amber: var(--h01-amber);
+  --pv-amber-text: var(--h01-amber-hover);
+  --pv-line: var(--h01-line);
+  --pv-bright: #fffdf8;
+  --pv-mark: #ffe3b8;
+  --pv-hover-duration: 200ms;
+
+  position: relative;
+  overflow: clip;
+  background: var(--h01-paper);
+  color: var(--pv-ink);
+}
+.pv::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, rgb(24 51 79 / 4%) 0 1px, transparent 1px 56px);
+  pointer-events: none;
+}
+.pv-inner {
+  position: relative;
+  max-width: var(--h01-container);
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 4vw, 3.5rem);
+}
+.pv-top {
+  padding: clamp(3rem, 6vw, 5rem) 0 2rem;
+}
+.pv-eyebrow {
+  margin: 0 0 var(--h01-space-3);
+  color: var(--pv-amber-text);
+  font-size: 0.8125rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+}
+.pv-title {
+  margin: 0;
+  font-size: clamp(2.2rem, 4.6vw, 3.75rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+}
+.pv-meta {
+  margin: 1rem 0 0;
+  color: var(--pv-muted);
+}
+.pv-draft {
+  max-width: 44rem;
+  margin: 1.5rem 0 0;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--pv-line);
+  border-left: 4px solid var(--pv-amber);
+  border-radius: 0.5rem;
+  background: var(--pv-bright);
+  font-size: 0.9375rem;
+}
+.pv-cols {
+  display: grid;
+  grid-template-columns: 16rem minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+.pv-toc {
+  position: sticky;
+  top: calc(var(--h01-header-height) + 1.5rem);
+}
+.pv-toc summary {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  margin-bottom: 0.5rem;
+  color: var(--pv-muted);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  cursor: pointer;
+}
+.pv-toc ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.pv-toc a {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 44px;
+  padding: 0.25rem 0 0.25rem 0.75rem;
+  border-left: 2px solid var(--pv-line);
+  color: var(--pv-blue);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color var(--pv-hover-duration), border-color var(--pv-hover-duration);
+}
+.pv-toc a:hover {
+  border-left-color: var(--pv-amber);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.pv-toc a span {
+  color: var(--pv-amber-text);
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+.pv-doc {
+  max-width: 44rem;
+}
+.pv-sec {
+  padding: 1.6rem 0;
+  border-top: 1px solid var(--pv-line);
+  scroll-margin-top: calc(var(--h01-header-height) + 1rem);
+}
+.pv-sec:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+.pv-sec h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  margin: 0 0 0.6rem;
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+.pv-sec h2 span {
+  color: var(--pv-amber-text);
+  font-size: 0.8125rem;
+  letter-spacing: 0.14em;
+}
+.pv-sec p {
+  margin: 0;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.pv mark {
+  padding: 0 0.2em;
+  border-radius: 0.2em;
+  background: var(--pv-mark);
+  color: var(--pv-ink);
+  font-weight: 600;
+}
+.pv-back {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--pv-line);
+}
+.pv-back p {
+  margin: 0;
+  color: var(--pv-muted);
+  font-size: 0.9375rem;
+}
+.pv a:focus-visible,
+.pv summary:focus-visible {
+  outline: 3px solid var(--pv-blue);
+  outline-offset: 3px;
+}
+@media (max-width: 63.99rem) {
+  .pv-cols {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .pv-toc {
+    position: static;
+    padding: 0 1rem;
+    border: 1px solid var(--pv-line);
+    border-radius: 0.6rem;
+    background: var(--pv-bright);
+  }
+  .pv-toc ol {
+    padding-bottom: 0.75rem;
+  }
+  .pv-toc details:not([open]) summary {
+    margin-bottom: 0;
+  }
+}
+@media (max-width: 47.99rem) {
+  .pv-back .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pv-toc a {
+    transition: none;
+  }
+}

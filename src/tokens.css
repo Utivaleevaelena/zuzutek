@@ -1,0 +1,47 @@
+:root {
+  --h01-paper: #f5f1e8;
+  --h01-paper-bright: #fffdf8;
+  --h01-ink: #101820;
+  --h01-ink-muted: #5e6872;
+  --h01-blue: #18334f;
+  --h01-blue-soft: #355d80;
+  --h01-amber: #ff8a00;
+  --h01-amber-hover: #e97800;
+  --h01-line: #d9d2c6;
+  --h01-focus: #0b5fff;
+
+  --h01-container: 1440px;
+  --h01-header-height: 72px;
+  --h01-content-max: 600px;
+  --h01-scene-ratio: 1.5988;
+  --h01-radius-sm: 10px;
+  --h01-radius-md: 18px;
+  --h01-shadow-soft: 0 20px 70px rgb(26 42 55 / 12%);
+
+  --h01-space-1: 0.25rem;
+  --h01-space-2: 0.5rem;
+  --h01-space-3: 0.75rem;
+  --h01-space-4: 1rem;
+  --h01-space-6: 1.5rem;
+  --h01-space-8: 2rem;
+  --h01-space-12: 3rem;
+  --h01-space-16: 4rem;
+
+  --h01-font-sans: Inter, "Helvetica Neue", Arial, sans-serif;
+  --h01-ease-physical: cubic-bezier(0.4, 0, 0.2, 1);
+  --h01-ease-settle: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  --h01-z-base: 10;
+  --h01-z-mountains: 20;
+  --h01-z-route: 30;
+  --h01-z-people: 40;
+  --h01-z-labels: 50;
+  --h01-z-ui: 60;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --h01-header-height: 64px;
+    --h01-radius-md: 14px;
+  }
+}

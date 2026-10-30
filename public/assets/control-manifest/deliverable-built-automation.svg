@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <title>Built automation</title>
+  <g stroke="#0A1D49" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M27.5 7h9l1.2 6a20 20 0 0 1 4.3 1.8l5-3.4 6.4 6.4-3.4 5a20 20 0 0 1 1.8 4.3l6 1.2v9l-6 1.2a20 20 0 0 1-1.8 4.3l3.4 5-6.4 6.4-5-3.4a20 20 0 0 1-4.3 1.8l-1.2 6h-9l-1.2-6a20 20 0 0 1-4.3-1.8l-5 3.4-6.4-6.4 3.4-5a20 20 0 0 1-1.8-4.3l-6-1.2v-9l6-1.2a20 20 0 0 1 1.8-4.3l-3.4-5 6.4-6.4 5 3.4a20 20 0 0 1 4.3-1.8L27.5 7Z"/>
+    <circle cx="32" cy="32" r="9"/>
+  </g>
+</svg>

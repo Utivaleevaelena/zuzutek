@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <title>Scope approval</title>
+  <g stroke="#0A1D49" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14 6h27l10 10v42H14V6Z"/>
+    <path d="M41 6v11h10M22 26h20M22 34h20M22 42h12"/>
+    <path d="m37 48 3 3 7-8"/>
+  </g>
+</svg>
