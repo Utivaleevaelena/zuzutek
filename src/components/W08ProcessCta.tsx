@@ -4,6 +4,7 @@ import { track } from '../analytics.ts'
 import { useOneShotReveal } from '../closing/hooks.ts'
 import { Arrow } from '../care/Arrow.tsx'
 import { careContent } from '../care/content.ts'
+import { sitePath } from '../sitePaths.ts'
 
 /** W08 (/how-it-works): the closing step — bring one repetitive workflow to the Fit Call. */
 export function W08ProcessCta() {
@@ -24,10 +25,10 @@ export function W08ProcessCta() {
           <p className="wb-lead">{w08.lead}</p>
         </div>
         <div className="wb-acts">
-          <a className="btn btn--primary wb-btn" href={w08.primaryCta.href} onClick={click(w08.primaryCta.ctaId)}>
+          <a className="btn btn--primary wb-btn" href={sitePath(w08.primaryCta.href)} onClick={click(w08.primaryCta.ctaId)}>
             {w08.primaryCta.label}
           </a>
-          <a className="link-arrow" href={w08.secondaryCta.href} onClick={click(w08.secondaryCta.ctaId)}>
+          <a className="link-arrow" href={sitePath(w08.secondaryCta.href)} onClick={click(w08.secondaryCta.ctaId)}>
             {w08.secondaryCta.label}
             <Arrow />
           </a>

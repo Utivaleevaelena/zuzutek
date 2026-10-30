@@ -3,6 +3,7 @@ import '../closing.css'
 import { track } from '../analytics.ts'
 import { closingContent } from '../closing/content.ts'
 import { useOneShotReveal } from '../closing/hooks.ts'
+import { sitePath } from '../sitePaths.ts'
 
 /** H08 (Home): the closing step. The amber route arrives at one card that says what to bring to the Fit Call. */
 export function H08BringOneProcess() {
@@ -48,7 +49,7 @@ export function H08BringOneProcess() {
             </ul>
             <a
               className="btn btn--primary hc-cta"
-              href={card.cta.href}
+              href={sitePath(card.cta.href)}
               onClick={() => track('primary_cta_click', { cta_id: card.cta.ctaId, source: card.cta.source })}
             >
               {card.cta.label}

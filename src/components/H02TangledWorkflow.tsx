@@ -4,6 +4,7 @@ import { H02_SCHEDULE, NODE_ORDER, workflowContent, type Layout, type ScenarioId
 import { useReducedMotion, useSceneActive } from '../workflow/hooks.ts'
 import { ProcessNode, pct } from '../workflow/ProcessNode.tsx'
 import { ScenarioControls } from '../workflow/ScenarioControls.tsx'
+import { sitePath } from '../sitePaths.ts'
 
 interface Props {
   layout: Layout
@@ -50,7 +51,7 @@ export function H02TangledWorkflow({ layout, tall, scenario, onSelect }: Props) 
       <figure ref={sceneRef} className={classes}>
         <img
           className="wf-photo"
-          src="/assets/h02-h03/h02-tangled-tabletop-base-v01.webp"
+          src={sitePath('/assets/h02-h03/h02-tangled-tabletop-base-v01.webp')}
           width={1586}
           height={992}
           alt=""

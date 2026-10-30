@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import '../notfound.css'
 import { track } from '../analytics.ts'
 import { notFoundContent } from '../notfound/content.ts'
+import { sitePath } from '../sitePaths.ts'
 
 const SOURCE = notFoundContent.routing.analyticsSource
 
@@ -41,14 +42,14 @@ export function NotFound() {
           <div className="nf-cta">
             <a
               className="btn btn--primary nf-btn"
-              href={e01.primaryCta.href}
+              href={sitePath(e01.primaryCta.href)}
               onClick={() => track('primary_cta_click', { cta_id: e01.primaryCta.ctaId, source: SOURCE })}
             >
               {e01.primaryCta.label}
             </a>
             <a
               className="link-arrow"
-              href={e01.secondaryCta.href}
+              href={sitePath(e01.secondaryCta.href)}
               onClick={() => track('primary_cta_click', { cta_id: e01.secondaryCta.ctaId, source: SOURCE })}
             >
               {e01.secondaryCta.label}
@@ -60,7 +61,7 @@ export function NotFound() {
             <ul>
               {e01.more.links.map((l) => (
                 <li key={l.href}>
-                  <a href={l.href}>{l.label}</a>
+                  <a href={sitePath(l.href)}>{l.label}</a>
                 </li>
               ))}
             </ul>

@@ -7,6 +7,7 @@ import { useCategorySpy, useScrollToHash, type SpyState } from '../atlas/hooks.t
 import { StartingRoutes } from '../atlas/StartingRoutes.tsx'
 import { useRevealOnce } from '../guided/hooks.ts'
 import { useReducedMotion } from '../workflow/hooks.ts'
+import { sitePath } from '../sitePaths.ts'
 
 const TITLE = 'Services & Pricing — ZuzuTek'
 const ids = atlasContent.categories.map((c) => c.id)
@@ -82,7 +83,7 @@ export function ServicesPricing() {
           <section id="pricing-destination" className="ar-destination" aria-label={cta.label}>
             <a
               className="btn btn--primary ar-cta"
-              href={cta.href}
+              href={sitePath(cta.href)}
               onClick={() => track('primary_cta_click', { cta_id: 'pricing-free-discovery-call' })}
             >
               {cta.label}
@@ -110,7 +111,7 @@ function PricingRules() {
       aria-labelledby="ar-rules-title"
     >
       <span className="ar-rules__icon">
-        <img src={beforeStart.icon} width={56} height={56} alt="" />
+        <img src={sitePath(beforeStart.icon)} width={56} height={56} alt="" />
       </span>
       <div>
         <p className="ar-eyebrow ar-eyebrow--plain">{beforeStart.eyebrow}</p>
@@ -147,7 +148,7 @@ function CategoryBlock({ category: c, state, reduced, setRef }: BlockProps) {
         <span className="ar-spine__cp">{c.number}</span>
       </div>
       <header className="ar-cat__head">
-        <img src={c.icon} width={48} height={48} alt="" />
+        <img src={sitePath(c.icon)} width={48} height={48} alt="" />
         <div>
           <p className="ar-cat__num">{c.number}</p>
           <h2 id={titleId} className="ar-cat__title">
@@ -181,7 +182,7 @@ function PackageRow({ pkg: p, index }: { pkg: CategoryPackage; index: number }) 
       {p.includes && <p className="ar-pkg__includes">{p.includes}</p>}
       <a
         className="ar-pkg__link"
-        href={p.href}
+        href={sitePath(p.href)}
         onClick={() => track('package_select', { package_id: p.id, source: 'services-pricing' })}
       >
         View details<span className="sr-only"> about {p.name}</span>

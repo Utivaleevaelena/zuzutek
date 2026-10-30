@@ -5,6 +5,7 @@ import { useReducedMotion } from '../workflow/hooks.ts'
 import { atlasContent } from './content.ts'
 import type { PriceSource } from './StartingRoutes.tsx'
 import type { SpyState } from './hooks.ts'
+import { sitePath } from '../sitePaths.ts'
 
 interface Props {
   source: PriceSource
@@ -33,13 +34,13 @@ export function CategoryDirectory({ source, states, current = -1 }: Props) {
           <li key={c.id} style={{ '--i': i, '--stagger': `${STAGGER_MS}ms` } as CSSProperties}>
             <a
               className={`ar-cap${state ? ` is-${state}` : ''}`}
-              href={`${base}#category-${c.id}`}
+              href={sitePath(`${base}#category-${c.id}`)}
               aria-current={i === current ? 'location' : undefined}
               onClick={() => track('pricing_category_select', { category_id: c.id, source })}
             >
               <span className="ar-cap__ring" aria-hidden="true" />
               <span className="ar-cap__num">{c.number}</span>
-              <img className="ar-cap__icon" src={c.icon} width={36} height={36} alt="" />
+              <img className="ar-cap__icon" src={sitePath(c.icon)} width={36} height={36} alt="" />
               <span className="ar-cap__name">{c.name}</span>
             </a>
           </li>

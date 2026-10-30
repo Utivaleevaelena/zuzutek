@@ -15,6 +15,7 @@ import {
 import { FIELD_WHISPERS, READY_WHISPER } from '../consultation/whispers.ts'
 import { RouteBriefForm, type FormPhase, type SceneSignal } from '../consultation/RouteBriefForm.tsx'
 import { useMediaQuery, useReducedMotion } from '../workflow/hooks.ts'
+import { sitePath } from '../sitePaths.ts'
 
 const TITLE = 'Free Automation Fit Call — ZuzuTek'
 const SOURCE = 'free-consultation'
@@ -141,9 +142,9 @@ export function FreeConsultation() {
   return (
     <div className={`cb${reduced ? ' is-reduced' : ''}`} data-state={state}>
       <picture className="cb-env" aria-hidden="true">
-        <source media="(max-width: 767px)" srcSet={`${ASSETS}/launch-environment-mobile-v01.webp`} width={941} height={1672} />
+        <source media="(max-width: 767px)" srcSet={sitePath(`${ASSETS}/launch-environment-mobile-v01.webp`)} width={941} height={1672} />
         <img
-          src={`${ASSETS}/launch-environment-desktop-v01.webp`}
+          src={sitePath(`${ASSETS}/launch-environment-desktop-v01.webp`)}
           width={1586}
           height={992}
           alt=""
@@ -169,7 +170,7 @@ export function FreeConsultation() {
           <a
             className="btn btn--primary cb-cta cb-rise"
             style={{ '--r': 4 } as CSSProperties}
-            href={c01.primaryCta.href}
+            href={sitePath(c01.primaryCta.href)}
             onClick={cta('consultation-start-request')}
           >
             {c01.primaryCta.label}
@@ -222,7 +223,7 @@ export function FreeConsultation() {
               )
             })}
           </ol>
-          <a className="cb-link" href={c02.cta.href} onClick={cta('consultation-continue-to-form')}>
+          <a className="cb-link" href={sitePath(c02.cta.href)} onClick={cta('consultation-continue-to-form')}>
             {c02.cta.label}
             <ArrowIcon />
           </a>
@@ -231,13 +232,13 @@ export function FreeConsultation() {
         <div ref={sceneRef} className="cb-scene">
           <div className="cb-lift">
             <div className="cb-art" aria-hidden="true">
-              <img className="cb-smoke cb-smoke--back" src={`${ASSETS}/smoke-back-v01.webp`} width={2048} height={768} alt="" />
+              <img className="cb-smoke cb-smoke--back" src={sitePath(`${ASSETS}/smoke-back-v01.webp`)} width={2048} height={768} alt="" />
               <div className="cb-rocket">
-                <img className="cb-plume" src={`${ASSETS}/plume-v01.webp`} width={1024} height={1536} alt="" />
-                <img className="cb-rocket__body" src={`${ASSETS}/rocket-cutout-v01.webp`} width={1024} height={1536} alt="" />
+                <img className="cb-plume" src={sitePath(`${ASSETS}/plume-v01.webp`)} width={1024} height={1536} alt="" />
+                <img className="cb-rocket__body" src={sitePath(`${ASSETS}/rocket-cutout-v01.webp`)} width={1024} height={1536} alt="" />
               </div>
-              <img className="cb-smoke cb-smoke--mid" src={`${ASSETS}/smoke-back-v01.webp`} width={2048} height={768} alt="" />
-              <img className="cb-smoke cb-smoke--front" src={`${ASSETS}/smoke-front-v01.webp`} width={1774} height={887} alt="" />
+              <img className="cb-smoke cb-smoke--mid" src={sitePath(`${ASSETS}/smoke-back-v01.webp`)} width={2048} height={768} alt="" />
+              <img className="cb-smoke cb-smoke--front" src={sitePath(`${ASSETS}/smoke-front-v01.webp`)} width={1774} height={887} alt="" />
             </div>
           </div>
         </div>

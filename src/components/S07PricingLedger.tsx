@@ -3,6 +3,7 @@ import '../outcomes.css'
 import { track } from '../analytics.ts'
 import { useOneShotReveal } from '../closing/hooks.ts'
 import { outcomesContent } from '../outcomes/content.ts'
+import { sitePath } from '../sitePaths.ts'
 
 const Arrow = () => (
   <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false">
@@ -44,7 +45,7 @@ export function S07PricingLedger() {
             <a
               key={l.ctaId}
               className="link-arrow"
-              href={l.href}
+              href={sitePath(l.href)}
               onClick={() => track('primary_cta_click', { cta_id: l.ctaId, source: analyticsSource })}
             >
               {l.label}

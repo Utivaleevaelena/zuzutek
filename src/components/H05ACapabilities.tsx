@@ -1,6 +1,7 @@
 import '../atlas.css'
 import { atlasContent } from '../atlas/content.ts'
 import { CategoryDirectory } from '../atlas/CategoryDirectory.tsx'
+import { sitePath } from '../sitePaths.ts'
 
 /** H05A: six capability anchors into /services-pricing (Home). */
 export function H05ACapabilities() {
@@ -18,7 +19,7 @@ export function H05ACapabilities() {
           <p className="ar-body">{home.directoryBody}</p>
         </header>
         <CategoryDirectory source="home" />
-        <a className="ar-link" href={home.directoryCta.href}>
+        <a className="ar-link" href={sitePath(home.directoryCta.href)}>
           {home.directoryCta.label}
           <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false">
             <path d="M3 10h13M11 5l5 5-5 5" />

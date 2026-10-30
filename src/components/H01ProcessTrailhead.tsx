@@ -3,6 +3,7 @@ import { content } from '../content.ts'
 import { track } from '../analytics.ts'
 import { clamp01, computeState, type H01State } from '../motion.ts'
 import { NODES, RouteOverlay } from './RouteOverlay.tsx'
+import { sitePath } from '../sitePaths.ts'
 
 const SCENE_W = 1586
 const SCENE_H = 992
@@ -158,7 +159,7 @@ export function H01ProcessTrailhead() {
               <div className="h01__actions">
                 <a
                   className="btn btn--primary"
-                  href={hero.primaryCta.href}
+                  href={sitePath(hero.primaryCta.href)}
                   data-analytics-event={hero.primaryCta.analyticsEvent}
                   onClick={() => track('primary_cta_click')}
                 >
@@ -166,7 +167,7 @@ export function H01ProcessTrailhead() {
                 </a>
                 <a
                   className="link-arrow"
-                  href={hero.secondaryCta.href}
+                  href={sitePath(hero.secondaryCta.href)}
                   data-analytics-event={hero.secondaryCta.analyticsEvent}
                   onClick={() => track('secondary_cta_click')}
                 >
@@ -181,17 +182,17 @@ export function H01ProcessTrailhead() {
             <div className="h01__visual" aria-hidden="true">
               <div className="h01__scene" ref={sceneRef}>
                 <div className="h01__backdrop">
-                  <img className="h01__layer h01__layer--valley" src="/assets/h01/valley-base-reveal.png" width={SCENE_W} height={SCENE_H} alt="" decoding="async" />
+                  <img className="h01__layer h01__layer--valley" src={sitePath('/assets/h01/valley-base-reveal.png')} width={SCENE_W} height={SCENE_H} alt="" decoding="async" />
                   <RouteOverlay />
-                  <img className="h01__layer h01__layer--mountain" data-mountain="left" src="/assets/h01/mountain-left.png" width={SCENE_W} height={SCENE_H} alt="" decoding="async" />
-                  <img className="h01__layer h01__layer--mountain" data-mountain="right" src="/assets/h01/mountain-right.png" width={SCENE_W} height={SCENE_H} alt="" decoding="async" />
+                  <img className="h01__layer h01__layer--mountain" data-mountain="left" src={sitePath('/assets/h01/mountain-left.png')} width={SCENE_W} height={SCENE_H} alt="" decoding="async" />
+                  <img className="h01__layer h01__layer--mountain" data-mountain="right" src={sitePath('/assets/h01/mountain-right.png')} width={SCENE_W} height={SCENE_H} alt="" decoding="async" />
                 </div>
-                <img className="h01__layer h01__layer--people" data-person="guide" src="/assets/h01/guide-orange.png" width={SCENE_W} height={SCENE_H} alt="" decoding="async" />
-                <img className="h01__layer h01__layer--people" data-person="client" src="/assets/h01/client-gray-map.png" width={SCENE_W} height={SCENE_H} alt="" decoding="async" />
+                <img className="h01__layer h01__layer--people" data-person="guide" src={sitePath('/assets/h01/guide-orange.png')} width={SCENE_W} height={SCENE_H} alt="" decoding="async" />
+                <img className="h01__layer h01__layer--people" data-person="client" src={sitePath('/assets/h01/client-gray-map.png')} width={SCENE_W} height={SCENE_H} alt="" decoding="async" />
                 <img
                   className="h01__sky-logo"
                   data-logo=""
-                  src="/assets/h01/zuzutek-logo.png"
+                  src={sitePath('/assets/h01/zuzutek-logo.png')}
                   width={2172}
                   height={724}
                   alt=""

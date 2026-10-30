@@ -9,6 +9,7 @@ import { W06AccessBoundaries } from '../components/W06AccessBoundaries.tsx'
 import { W07OptionalCare } from '../components/W07OptionalCare.tsx'
 import { W08ProcessCta } from '../components/W08ProcessCta.tsx'
 import { useMediaQuery, useReducedMotion } from '../workflow/hooks.ts'
+import { sitePath } from '../sitePaths.ts'
 
 const TITLE = 'How It Works — ZuzuTek'
 
@@ -106,7 +107,7 @@ export function HowItWorks() {
           </ol>
           <a
             className="btn btn--primary gw-cta"
-            href={w01.cta.href}
+            href={sitePath(w01.cta.href)}
             onClick={() => track('how_it_works_cta_click', { cta_id: 'w01-fit-call' })}
           >
             {w01.cta.label}
@@ -196,7 +197,7 @@ function Chapter({ stage: s, index, last, state, drawn, setRef }: ChapterProps) 
         {last ? (
           <a
             className="btn btn--primary gw-cta"
-            href={s.nextHref}
+            href={sitePath(s.nextHref)}
             onClick={() => track('how_it_works_cta_click', { cta_id: 'w05-free-consultation' })}
           >
             {s.nextLabel}
@@ -205,7 +206,7 @@ function Chapter({ stage: s, index, last, state, drawn, setRef }: ChapterProps) 
             </span>
           </a>
         ) : (
-          <a className="gw-next" href={s.nextHref}>
+          <a className="gw-next" href={sitePath(s.nextHref)}>
             <span className="gw-next__icon" aria-hidden="true">
               <Foot />
             </span>

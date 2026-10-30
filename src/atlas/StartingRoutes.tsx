@@ -3,6 +3,7 @@ import { track } from '../analytics.ts'
 import { useRevealOnce } from '../guided/hooks.ts'
 import { useReducedMotion } from '../workflow/hooks.ts'
 import { atlasContent, ROUTE_LABELS } from './content.ts'
+import { sitePath } from '../sitePaths.ts'
 
 /** ANIMATION-SCENARIO.md: segment i starts at SEG[i] (360 ms); checkpoint + card at CARD[i]. */
 const SEG_DELAY_MS = [0, 360, 720]
@@ -53,7 +54,7 @@ export function StartingRoutes({ source }: { source: PriceSource }) {
                 <span className="ar-card__num">{p.number}</span>
                 {p.primary && <span className="ar-badge">{p.label}</span>}
               </div>
-              <img className="ar-card__icon" src={p.icon} width={56} height={56} alt="" />
+              <img className="ar-card__icon" src={sitePath(p.icon)} width={56} height={56} alt="" />
               <h3 className="ar-card__name">{p.name}</h3>
               <p className="ar-price">
                 <span className="ar-price__amount">{p.price}</span>{' '}
@@ -67,7 +68,7 @@ export function StartingRoutes({ source }: { source: PriceSource }) {
               <p className="ar-card__scope">{p.scopeNote}</p>
               <a
                 className="ar-card__link"
-                href={p.href}
+                href={sitePath(p.href)}
                 onClick={() => track('package_select', { package_id: p.id, source })}
               >
                 <span>Learn about {p.name}</span>

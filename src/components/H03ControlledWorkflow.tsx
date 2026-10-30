@@ -15,6 +15,7 @@ import { useReducedMotion, useSceneActive } from '../workflow/hooks.ts'
 import { OutcomeNode, ProcessNode } from '../workflow/ProcessNode.tsx'
 import { ArrowIcon } from '../workflow/icons.tsx'
 import { ScenarioControls } from '../workflow/ScenarioControls.tsx'
+import { sitePath } from '../sitePaths.ts'
 
 interface Props {
   layout: Layout
@@ -70,7 +71,7 @@ export function H03ControlledWorkflow({ layout, tall, scenario, runKey, onSelect
         <ScenarioControls active={scenario} onSelect={onSelect} labelledBy="h03-scenarios" />
         <a
           className="btn btn--primary wf-cta"
-          href={h03.cta.href}
+          href={sitePath(h03.cta.href)}
           onClick={() => track('ai_automation_cta_click')}
         >
           {h03.cta.label}
@@ -83,7 +84,7 @@ export function H03ControlledWorkflow({ layout, tall, scenario, runKey, onSelect
       <figure ref={sceneRef} className={classes} data-step={step}>
         <img
           className="wf-photo"
-          src="/assets/h02-h03/h03-controlled-tabletop-base-v01.webp"
+          src={sitePath('/assets/h02-h03/h03-controlled-tabletop-base-v01.webp')}
           width={1585}
           height={992}
           alt=""

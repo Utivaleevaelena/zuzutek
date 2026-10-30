@@ -4,6 +4,7 @@ import { track } from '../analytics.ts'
 import { proofContent } from '../proof/content.ts'
 import { useListReveal, useNear, useProofPrefetch, useProofScroll } from '../proof/hooks.ts'
 import { useMediaQuery, useReducedMotion } from '../workflow/hooks.ts'
+import { sitePath } from '../sitePaths.ts'
 
 type ProofCase = (typeof proofContent.h07.cases)[number]
 
@@ -45,7 +46,7 @@ export function H07ProofAtlas() {
   const near = useNear(sectionRef)
   const { index, instant, select } = useProofScroll(trackRef, cases.length, sticky)
   useProofPrefetch(
-    cases.map((c) => c.image),
+    cases.map((c) => sitePath(c.image)),
     index,
     stage && near,
   )
@@ -136,7 +137,7 @@ export function H07ProofAtlas() {
                     </div>
                     <figure className="pa-shot">
                       <img
-                        src={active.image}
+                        src={sitePath(active.image)}
                         alt={active.alt}
                         {...dimensions(active)}
                         loading="lazy"
@@ -172,7 +173,7 @@ export function H07ProofAtlas() {
                     </span>
                     <article className="pa-card">
                       <figure className="pa-card__shot">
-                        <img src={c.image} alt={c.alt} {...dimensions(c)} loading="lazy" decoding="async" />
+                        <img src={sitePath(c.image)} alt={c.alt} {...dimensions(c)} loading="lazy" decoding="async" />
                       </figure>
                       <div className="pa-card__head">
                         <p className="pa-card__cat">{c.category}</p>
@@ -192,7 +193,7 @@ export function H07ProofAtlas() {
                 <a
                   key={cta.ctaId}
                   className={`btn pa-btn${i === 0 ? ' btn--primary' : ' pa-btn--ghost'}`}
-                  href={cta.href}
+                  href={sitePath(cta.href)}
                   onClick={() => track('primary_cta_click', { cta_id: cta.ctaId, source: cta.source })}
                 >
                   {cta.label}

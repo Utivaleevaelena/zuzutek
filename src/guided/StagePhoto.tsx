@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react'
 import { STAGE_VISUAL, type Stage } from './content.ts'
+import { sitePath } from '../sitePaths.ts'
 
 interface Props {
   stage: Stage
@@ -18,7 +19,7 @@ export function StagePhoto({ stage, eager = false }: Props) {
     <div className="gw-photo" style={style}>
       <div className="gw-photo__frame">
         <img
-          src={stage.image}
+          src={sitePath(stage.image)}
           width={1600}
           height={900}
           alt={stage.alt}
@@ -27,7 +28,7 @@ export function StagePhoto({ stage, eager = false }: Props) {
         />
         <img
           className="gw-photo__mono"
-          src="/assets/guided-worlds/zuzutek-monogram-cream-v01.png"
+          src={sitePath('/assets/guided-worlds/zuzutek-monogram-cream-v01.png')}
           width={360}
           height={263}
           alt=""

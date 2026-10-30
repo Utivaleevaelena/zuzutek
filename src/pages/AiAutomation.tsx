@@ -13,6 +13,7 @@ import { S08Faq } from '../components/S08Faq.tsx'
 import { S09OfferCta } from '../components/S09OfferCta.tsx'
 import { outcomesContent } from '../outcomes/content.ts'
 import { useMediaQuery, useReducedMotion } from '../workflow/hooks.ts'
+import { sitePath } from '../sitePaths.ts'
 
 const TITLE = 'AI Business Automation — ZuzuTek'
 const SOURCE = 'ai-automation-control-manifest'
@@ -109,7 +110,7 @@ export function AiAutomation() {
             />
             <a
               className="cm-link"
-              href={s03.primaryCta.href}
+              href={sitePath(s03.primaryCta.href)}
               onClick={() => track('primary_cta_click', { cta_id: 'ai-s03-how-delivery-works', source: SOURCE })}
             >
               {s03.primaryCta.label}
@@ -190,7 +191,7 @@ export function AiAutomation() {
           <div className="cm-actions">
             <a
               className="btn btn--primary cm-cta"
-              href={s06.primaryCta.href}
+              href={sitePath(s06.primaryCta.href)}
               onClick={() => track('primary_cta_click', { cta_id: 'ai-s06-see-how-delivery-works', source: SOURCE })}
             >
               {s06.primaryCta.label}
@@ -198,7 +199,7 @@ export function AiAutomation() {
             </a>
             <a
               className="cm-link cm-link--inline"
-              href={s06.secondaryCta.href}
+              href={sitePath(s06.secondaryCta.href)}
               onClick={() => track('primary_cta_click', { cta_id: 'ai-s06-free-discovery-call', source: SOURCE })}
             >
               {s06.secondaryCta.label}

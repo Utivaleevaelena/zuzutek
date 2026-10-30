@@ -3,6 +3,7 @@ import { track } from '../analytics.ts'
 import { consultationContent } from './content.ts'
 import { deliveryConfigured, submitConsultation } from './delivery.ts'
 import { ArrowIcon } from './icons.tsx'
+import { sitePath } from '../sitePaths.ts'
 import {
   emptyValues,
   fieldIds,
@@ -113,7 +114,7 @@ export function RouteBriefForm({ onScene }: { onScene: (signal: SceneSignal) => 
       setPhase('success')
       onScene({ phase: 'success' })
       track('consultation_submitted', { form_id: 'route-brief' })
-      window.setTimeout(() => window.location.assign(THANK_YOU_ROUTE), LIFT_OFF_MS)
+      window.setTimeout(() => window.location.assign(sitePath(THANK_YOU_ROUTE)), LIFT_OFF_MS)
       return
     }
     setPhase('idle')
@@ -220,7 +221,7 @@ export function RouteBriefForm({ onScene }: { onScene: (signal: SceneSignal) => 
         <p id="cb-warning" className="cb-warning">
           {c04.warning}
         </p>
-        <a className="cb-privacy-link" href={c04.privacyLink.href}>
+        <a className="cb-privacy-link" href={sitePath(c04.privacyLink.href)}>
           {c04.privacyLink.label}
         </a>
       </section>

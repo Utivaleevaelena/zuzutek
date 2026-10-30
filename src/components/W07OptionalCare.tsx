@@ -4,6 +4,7 @@ import { track } from '../analytics.ts'
 import { useOneShotReveal } from '../closing/hooks.ts'
 import { Arrow } from '../care/Arrow.tsx'
 import { careContent } from '../care/content.ts'
+import { sitePath } from '../sitePaths.ts'
 
 /** W07 (/how-it-works): optional Care as a quiet orbit around the finished automation. Static once drawn. */
 export function W07OptionalCare() {
@@ -25,7 +26,7 @@ export function W07OptionalCare() {
           <p className="wb-linkrow">
             <a
               className="link-arrow"
-              href={w07.link.href}
+              href={sitePath(w07.link.href)}
               onClick={() => track('how_it_works_cta_click', { cta_id: w07.link.ctaId })}
             >
               {w07.link.label}

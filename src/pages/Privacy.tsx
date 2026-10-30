@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import '../privacy.css'
 import { track } from '../analytics.ts'
 import { privacyContent } from '../privacy/content.ts'
+import { sitePath } from '../sitePaths.ts'
 
 const { p01, routing } = privacyContent
 
@@ -67,7 +68,7 @@ export function Privacy() {
             <div className="pv-back">
               <a
                 className="btn btn--primary"
-                href={p01.back.href}
+                href={sitePath(p01.back.href)}
                 onClick={() => track('primary_cta_click', { cta_id: p01.back.ctaId, source: routing.analyticsSource })}
               >
                 {p01.back.label}

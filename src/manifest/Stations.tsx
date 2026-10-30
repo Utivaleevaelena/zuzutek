@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react'
 import { useItemProgress } from './hooks.ts'
+import { sitePath } from '../sitePaths.ts'
 
 export interface Station {
   id: string
@@ -46,7 +47,7 @@ export function Stations({ items, label, variant, wide, plateDone, skipped, inst
               <span className="cm-seg" />
             </div>
             <article className="cm-card">
-              <img className="cm-card__icon" src={it.icon} width={48} height={48} alt="" />
+              <img className="cm-card__icon" src={sitePath(it.icon)} width={48} height={48} alt="" />
               <div>
                 <h3 className="cm-card__title">{it.title}</h3>
                 <p className="cm-card__body">{it.body}</p>

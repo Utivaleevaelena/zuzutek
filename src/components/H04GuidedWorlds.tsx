@@ -6,6 +6,7 @@ import { useRevealOnce } from '../guided/hooks.ts'
 import { useReducedMotion } from '../workflow/hooks.ts'
 import { ArrowRight, FOOTER_ICONS, STAGE_ICONS } from '../guided/icons.tsx'
 import { StagePhoto } from '../guided/StagePhoto.tsx'
+import { sitePath } from '../sitePaths.ts'
 
 /** Seconds-based delays from ANIMATION-SCENARIO.md: segment i starts at SEG[i]; checkpoint + card at CARD[i]. */
 const SEG_DELAY_MS = [0, 420, 840, 1260]
@@ -49,7 +50,7 @@ export function H04GuidedWorlds() {
             {h04.title}
           </h2>
           <p className="gw-body">{h04.body}</p>
-          <a className="btn btn--primary gw-cta" href={h04.cta.href}>
+          <a className="btn btn--primary gw-cta" href={sitePath(h04.cta.href)}>
             {h04.cta.label}
             <span className="gw-cta__arrow" aria-hidden="true">
               <ArrowRight />
@@ -95,7 +96,7 @@ export function H04GuidedWorlds() {
                 </div>
                 <a
                   className="gw-card"
-                  href={s.href}
+                  href={sitePath(s.href)}
                   onClick={() => track('guided_worlds_stage_select', { stage_id: s.id })}
                 >
                   <div className="gw-paper">
